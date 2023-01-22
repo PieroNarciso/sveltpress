@@ -15,6 +15,7 @@
     "checkJs": true,
     "isolatedModules": true
   },
-  "include": ["src/**/*.d.ts", "src/**/*.ts", "src/**/*.js", "src/**/*.svelte"],
-  "references": [{ "path": "./tsconfig.node.json" }]
+  "include": ["src/**/*.d.ts", "src/**/*.ts", "src/**/*.js", "src/**/*.svelte", "nested/**/*.ts"],
+  "references": [{ "path": "./tsconfig.node.json" }],
+  "exclude": ["src/server.ts", "src/lib/**/*.ts", "src/lib/**/*.js"]
 }
