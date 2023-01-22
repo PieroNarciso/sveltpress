@@ -1,28 +1,44 @@
 <script lang="ts">
-    import { onMount } from 'svelte';
-  import svelteLogo from './assets/svelte.svg'
-  import Counter from './lib/Counter.svelte'
+  import { onMount } from "svelte";
+  import svelteLogo from "./assets/svelte.svg";
+  import Counter from "./lib/Counter.svelte";
+
+  let message = "";
+  let ping = "";
+
+  onMount(async () => {
+    console.log("App mounted");
+
+    try {
+      const res = await fetch("/api/hello");
+      const data = await res.json();
+      message = data.message;
+      console.log(data);
+    } catch (e) {
+      console.log(e);
+    }
+  });
 
   onMount(async() => {
-    console.log('App mounted')
+    try {
+      const res = await fetch('/api/ping');
+      const data = await res.json();
+      ping = data.message;
 
-      try {
-        const res = await fetch('/api/hello')
-        const data = await res.json()
-        console.log(data)
-      } catch(e) {
-       console.log(e)
-      }
-    
+    } catch(e) {
+      console.log(e)
+    }
   })
 </script>
 
 <main>
+  <p>{message}!!!</p>
+  <p>{ping}</p>
   <div>
-    <a href="https://vitejs.dev" target="_blank" rel="noreferrer"> 
+    <a href="https://vitejs.dev" target="_blank" rel="noreferrer">
       <img src="/vite.svg" class="logo" alt="Vite Logo" />
     </a>
-    <a href="https://svelte.dev" target="_blank" rel="noreferrer"> 
+    <a href="https://svelte.dev" target="_blank" rel="noreferrer">
       <img src={svelteLogo} class="logo svelte" alt="Svelte Logo" />
     </a>
   </div>
@@ -33,12 +49,14 @@
   </div>
 
   <p>
-    Check out <a href="https://github.com/sveltejs/kit#readme" target="_blank" rel="noreferrer">SvelteKit</a>, the official Svelte app framework powered by Vite!
+    Check out <a
+      href="https://github.com/sveltejs/kit#readme"
+      target="_blank"
+      rel="noreferrer">SvelteKit</a
+    >, the official Svelte app framework powered by Vite!
   </p>
 
-  <p class="read-the-docs">
-    Click on the Vite and Svelte logos to learn more
-  </p>
+  <p class="read-the-docs">Click on the Vite and Svelte logos to learn more</p>
 </main>
 
 <style>
