@@ -21,7 +21,7 @@
 <main>
   Hola desde main
 
-  <div>{message}</div>
+  <div>request: {message}</div>
 </main>
 
 <style>

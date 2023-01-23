@@ -6,10 +6,13 @@ const { PORT = 3001 } = process.env;
 
 const root = resolve(__dirname, './src/app/pages');
 
+
+
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [svelte({ configFile: '../../../svelte.config.js' })],
   root: root,
+  appType: 'mpa',
   server: {
     proxy: {
       '/api': {
@@ -25,8 +28,8 @@ export default defineConfig({
       input: {
         main: resolve(root, 'index.html'),
         products: resolve(root, 'products', 'index.html'),
-        clients: resolve(root, 'clients', 'index.html')
+        clients: resolve(root, 'clients', 'index.html'),
       }
     }
   },
-})
+});

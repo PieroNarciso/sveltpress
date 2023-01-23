@@ -20,11 +20,22 @@ app.use('/api', router);
 // Serve app production bundle
 app.use(express.static('dist/app'));
 
-// Handle client routing, return all requests to the app
-app.get('*', (_req, res) => {
-  console.log(path.join(__dirname, 'app/index.html'));
+
+// products
+app.get('/products/*', (_req, res) => {
+  res.sendFile(path.join(__dirname, 'app/products/index.html'));
+})
+
+// products
+app.get('/clients/*', (_req, res) => {
+  res.sendFile(path.join(__dirname, 'app/clients/index.html'));
+})
+
+// root
+app.get('/', (_req, res) => {
   res.sendFile(path.join(__dirname, 'app/index.html'));
 });
+
 
 app.listen(PORT, () => {
   console.log(`Server listening at http://localhost:${PORT}`);
